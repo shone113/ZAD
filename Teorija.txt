@@ -1,0 +1,49 @@
+Batch GD: u svakom koraku istovremeno ažuriramo parametre modela koristedi sve trening podatke
+(moramo da izračunamo grešku za sve primere pa tek onda radimo promenu)
+Stohastic GD: više puta prolazimo kroz skup podataka. Kad god naiđemo na trening podatak, ažuriramo gradijent na osnovu tog (jednog) trening podatka
+(nema sume ovde, promenu radimo odmah za svaki primer)
+Mini-Batch GD: u svakom koraku istovremeno ažuriramo parametre modela koristedi sve trening podatke (ovde koristimo samo primere iz skupa mini_batch)
+• Batch GD mora da skenira ceo skup podataka da bi napravio jedan
+korak
+• Ovo je skupa operacija ako je broj podataka N velik
+• Stohastic GD može da napreduje odmah, i napreduje sa svakim
+uočenim trening podatkom
+• Često, stohastic GD dovede θ „blizu“ minimuma mnogo brže od
+batch GD
+• Međutim, dešava se da nikada ne „konvergira“ u minimum
+(parametri θ osciluju oko minimuma)
+• U praksi, tačke „blizu“ minimuma su dovoljno dobre
+• Iz ovih razloga, kada je skup podataka velik, preferiramo stohastic
+
+Obučvavanje Binarnog Perceptrona
+▪ Na početku sve težine su = 0
+▪ Za svaki primer iz ob skupa radimo:
+▪ Klasifikujemo ga pomoću trenutnih težina
+▪ Ako je klasifikacija tačna (tj. y=y*) onda nema
+promene težina!
+▪ Ako je pogrešna: menjamo vektor težina tako
+što na njega dodajemo ili od njega oduzimamo
+vektor osobina tog primera. To je realizovano
+kroz formulu dole. Npr. ako je y*= -1 biće
+oduzimanje    w = w + y* f
+
+#### Prednosti K-means
+* Jednostavan i lako razumljiv
+* Laka implementacija
+* Relativno dobre performanse (za malo K)
+* Odličan kada su klasteri sferičnog/globularnog oblika (malo formalnije hiper-sferičnog, za sfere u >3 dimenzija)
+#### Mane K-means
+* Potrebno unapred znati K (što je nekad teško odrediti)
+* Nije deterministički - pošto se centri inicijalizuju nasumično, nekad se dobijaju drugačiji rezultati
+* Osetljiv na šum
+* Kada podaci nisu globularnog oblika -> beskoristan (pogledati donju sliku)
+* Nema mogućnost hijerarhijskog klasterovanja (razlikovanje više manjih podklastera unutar većeg klastera)
+#### Prednosti DBSCAN
+* Nije potrebno unapred znati broj klastera (kao kod K-means)
+* Klasteri mogu biti proizvoljnog oblika
+* Ume da tretira šum
+* Parametre epsilon i minPts je lako menjati u cilju dobijanja klastera različitih veličina i oblika, i ove parametre često podešavaju eksperti sa domenskim znanjem
+#### Mane DBSCAN
+* Kvalitet rezultata zavisi od toga čime se meri epsilon. Obično je to euklidska udaljenost, ali za višedimenzionalne podatke potrebne su drugačije metrike
+* Kada postoje varijacije u gustini klastera, nemoguće je odrediti epsilon i minPts da odgovara svim klasterima
+* U slučaju kada ne postoji ekspert sa domenskim znanjem, određivanje epsilon i minPts parametara je često dosta teško
