@@ -1,0 +1,29 @@
+Ulazne dimenzije: Početna slika ima dimenzije 3 x 32 x 32 (3 kanala, 32 piksela visine i širine).
+
+Prvi konvolucioni sloj (conv_layer1):
+
+nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3)
+Ovo smanjuje dimenzije na 32 x 30 x 30 (jer 32 - 3 + 1 = 30).
+Drugi konvolucioni sloj (conv_layer2):
+
+nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3)
+Ovo smanjuje dimenzije na 32 x 28 x 28 (jer 30 - 3 + 1 = 28).
+Prvi pooling sloj (max_pool1):
+
+nn.MaxPool2d(kernel_size=2, stride=2)
+Ovo smanjuje dimenzije na 32 x 14 x 14 (jer 28 / 2 = 14).
+Treći konvolucioni sloj (conv_layer3):
+
+nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3)
+Ovo smanjuje dimenzije na 64 x 12 x 12 (jer 14 - 3 + 1 = 12).
+Četvrti konvolucioni sloj (conv_layer4):
+
+nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3)
+Ovo smanjuje dimenzije na 64 x 10 x 10 (jer 12 - 3 + 1 = 10).
+Drugi pooling sloj (max_pool2):
+
+nn.MaxPool2d(kernel_size=2, stride=2)
+Ovo smanjuje dimenzije na 64 x 5 x 5 (jer 10 / 2 = 5).
+Flatten sloj (flatten):
+
+Ovaj tensor sa dimenzijama 64 x 5 x 5 se spljoštava (flatten) u tensor sa dimenzijama 64 * 5 * 5 = 1600.
